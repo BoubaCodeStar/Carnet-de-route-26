@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Été 2026 — Carnet de route</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noir:#141210;
+    --carte:#1e1a16;
+    --braise:#ff7a3c;
+    --ambre:#f2b544;
+    --terracotta:#c96b4a;
+    --sable:#e8ddc9;
+    --gris:#a89e8d;
+    --trait:#332c25;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--noir);color:var(--sable);
+    font-family:"Inter",system-ui,sans-serif;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px 90px}
+
+  header{padding:70px 0 46px}
+  header::after{content:"";display:block;margin-top:40px;height:3px;
+    background:linear-gradient(90deg,var(--braise),var(--ambre) 55%,transparent)}
+  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ambre);font-weight:600;margin-bottom:16px}
+  h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+    font-size:clamp(42px,9vw,76px);line-height:1;color:var(--sable)}
+  h1 .accent{color:var(--braise)}
+  .sub{margin-top:20px;max-width:56ch;color:var(--gris);font-size:16px}
+
+  .chapitre{margin-top:60px}
+  .chap-head{display:flex;align-items:baseline;gap:16px;margin-bottom:22px}
+  .chap-num{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+    font-size:15px;color:var(--noir);background:var(--ambre);
+    border-radius:4px;padding:3px 10px}
+  .chap-head h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;
+    font-size:clamp(24px,5vw,32px);color:var(--sable)}
+  .chap-dates{font-size:13px;color:var(--braise);font-weight:600;
+    letter-spacing:.08em;text-transform:uppercase}
+
+  .grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+  .carte{background:var(--carte);border:1px solid var(--trait);
+    border-radius:12px;padding:20px 22px;position:relative;overflow:hidden}
+  .carte::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:var(--terracotta)}
+  .carte.hot::before{background:var(--braise)}
+  .carte.gold::before{background:var(--ambre)}
+
+  .type{display:inline-flex;align-items:center;gap:6px;
+    font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--noir);padding:3px 10px;border-radius:4px;margin-bottom:10px}
+  .type.vol{background:var(--ambre)}
+  .type.train{background:#e8ddc9}
+  .type.hotel{background:var(--terracotta);color:#fff}
+  .type.camping{background:var(--braise)}
+  .type.chalet{background:#8fae6a}
+  .type.vehicule{background:#d9a06b}
+  .type.event{background:#b085c9}
+  .type.colo{background:#7fb6c9}
+
+  .quand{font-size:12px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ambre);margin-bottom:6px}
+  .carte h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;
+    font-size:19px;color:var(--sable);margin-bottom:8px;line-height:1.25}
+  .carte p{font-size:14px;color:var(--gris)}
+  .ref{margin-top:12px;padding-top:10px;border-top:1px dashed var(--trait);
+    font-size:12px;color:var(--gris)}
+  .ref b{color:var(--ambre);font-family:ui-monospace,Menlo,monospace;
+    font-weight:600;letter-spacing:.04em}
+  .badges{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .b{font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;
+    border:1px solid var(--trait);color:var(--gris)}
+  .b.ok{border-color:var(--braise);color:var(--braise)}
+  .b.warn{border-color:var(--ambre);color:var(--ambre)}
+
+  .alerte{margin-top:64px;background:linear-gradient(135deg,#241a12,#1e1a16);
+    border:1px solid #4a3416;border-radius:12px;padding:22px 26px}
+  .alerte h4{font-family:"Bricolage Grotesque",sans-serif;color:var(--ambre);
+    font-size:15px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+  .alerte li{font-size:14px;color:var(--gris);margin:6px 0 6px 18px}
+  .alerte strong{color:var(--sable)}
+  footer{margin-top:44px;font-size:12px;color:#6f675a;letter-spacing:.04em}
+  @media (prefers-reduced-motion:no-preference){
+    .carte{transition:transform .18s ease,border-color .18s ease}
+    .carte:hover{transform:translateY(-3px);border-color:#4a3f33}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Berthollet · Juillet — Août 2026</div>
+    <h1>Carnet de route<br><span class="accent">de l'été</span></h1>
+    <p class="sub">Quatre chapitres : l'Atlantique, les Alpes en van, le Québec en famille, et la rentrée en musique. Avec horaires et références de réservation, compilés depuis tes mails et ton calendrier.</p>
+  </header>
+
+  <!-- ============ 01 ============ -->
+  <section class="chapitre">
+    <div class="chap-head">
+      <span class="chap-num">01</span>
+      <div><h2>Île de Ré & colonie</h2><div class="chap-dates">8 → 16 juillet</div></div>
+    </div>
+    <div class="grille">
+      <div class="carte">
+        <span class="type colo">🏇 Colonie</span>
+        <div class="quand">Mer 8 → Jeu 16 juil</div>
+        <h3>« Mes premiers galops et mon premier potager » — Enea</h3>
+        <p>Séjour VAEC 17 au Centre des Terrasses, organisé par P4S. Horaires de convocation dans la PJ du mail du 26 juin.</p>
+        <div class="ref">Réf. <b>VAEC 17</b> · Organisme P4S</div>
+        <div class="badges"><span class="b ok">Confirmé</span></div>
+      </div>
+      <div class="carte">
+        <span class="type train">🚄 Train</span>
+        <div class="quand">Aller sam 11 juil · Retour mar 14 juil</div>
+        <h3>Paris Montparnasse ⇄ La Rochelle Ville</h3>
+        <p>Billets SNCF Connect réservés par Anne le 18 avril. Horaires exacts sur son carnet de voyage SNCF Connect.</p>
+        <div class="ref">Compte <b>SNCF Connect d'Anne</b></div>
+        <div class="badges"><span class="b ok">Réservé</span></div>
+      </div>
+      <div class="carte hot">
+        <span class="type hotel">🏨 Hôtel</span>
+        <div class="quand">Sam 11 → Mar 14 juil · 3 nuits</div>
+        <h3>Hôtel Île de Ré</h3>
+        <p>Escapade en duo pendant la colonie. Réservation confirmée le 22 avril.</p>
+        <div class="ref">Réf. <b>KBLIDM</b></div>
+        <div class="badges"><span class="b ok">Confirmé</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 ============ -->
+  <section class="chapitre">
+    <div class="chap-head">
+      <span class="chap-num">02</span>
+      <div><h2>Les Alpes en van</h2><div class="chap-dates">25 juillet → 1er août</div></div>
+    </div>
+    <div class="grille">
+      <div class="carte">
+        <span class="type train">🚄 Train</span>
+        <div class="quand">Sam 25 juil · Départ 11:20</div>
+        <h3>TER 886869 — Saint-Étienne Châteaucreux → Montluel</h3>
+        <p>3 voyageurs (Laurent, Anne, Enea), tarif Illico Promo Vacances (−40 %), 22,60 €. Billet à imprimer — non imprimable en gare. Arrivée à Montluel juste à temps pour récupérer le van à 13h.</p>
+        <div class="ref">Réf. <b>55NRU6</b> · payé le 1er juillet</div>
+        <div class="badges"><span class="b ok">Payé</span><span class="b warn">À imprimer avant le départ</span></div>
+      </div>
+      <div class="carte gold">
+        <span class="type vehicule">🚐 Van</span>
+        <div class="quand">Prise en main sam 25 juil · 13:00 · Lyon</div>
+        <h3>Roadsurfer — « Travel Home »</h3>
+        <p>Van aménagé à récupérer à la station roadsurfer de Lyon. Paiement encaissé, confirmation de prise en charge en PJ du mail. Restitution en fin de virée (après Aiguebelette).</p>
+        <div class="ref">Rés. <b>3278949997</b> · roadsurfer Lyon</div>
+        <div class="badges"><span class="b ok">Payé</span><span class="b warn">Heure de restitution à vérifier en PJ</span></div>
+      </div>
+      <div class="carte hot">
+        <span class="type camping">🏕 Camping</span>
+        <div class="quand">Sam 25 (14:00–20:30) → Mar 28 juil (départ 7:30–12:00)</div>
+        <h3>Flower Camping Le Montana — Vallée de la Clarée</h3>
+        <p>Route de Névache, Val-des-Prés (05). Emplacement confort van 2×5 m + élec., 3 pers. Total 167,46 € soldé. Arrivée tardive : 07 86 64 30 77.</p>
+        <div class="ref">Réf. <b>18759022</b> · secureholiday.net</div>
+        <div class="badges"><span class="b ok">Payé</span></div>
+      </div>
+      <div class="carte hot">
+        <span class="type camping">🏕 Camping</span>
+        <div class="quand">Mar 28 → Ven 31 juil</div>
+        <h3>Camping du Lac les Iscles — Eygliers</h3>
+        <p>Guillestre / Serre-Ponçon. 2 emplacements, 2 vans (4 adultes + 3 enfants) avec électricité. Arrhes 64 € virées, confirmées par Pascale.</p>
+        <div class="ref">Contact <b>camping.eygliers@applicamp.fr</b></div>
+        <div class="badges"><span class="b ok">Confirmé</span><span class="b warn">Solde sur place</span></div>
+      </div>
+      <div class="carte hot">
+        <span class="type camping">🏕 Camping</span>
+        <div class="quand">Ven 31 juil → Sam 1er août · 1 nuit</div>
+        <h3>Camping Les Peupliers — Lac d'Aiguebelette</h3>
+        <p>Étape retour Onlycamp au bord du lac (Savoie). Dernière baignade, restitution du van à Lyon (≈1h de route), puis remontée sur Paris — l'avion décolle le lendemain soir.</p>
+        <div class="ref">Confirmation <b>Onlycamp</b> du 31 mai</div>
+        <div class="badges"><span class="b ok">Confirmé</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 ============ -->
+  <section class="chapitre">
+    <div class="chap-head">
+      <span class="chap-num">03</span>
+      <div><h2>Québec en famille</h2><div class="chap-dates">2 → 16 août</div></div>
+    </div>
+    <div class="grille">
+      <div class="carte gold">
+        <span class="type vol">✈ Vol</span>
+        <div class="quand">Dim 2 août · CDG 21:15 → YQB 22:35</div>
+        <h3>AF 0352 — Paris CDG → Québec YQB</h3>
+        <p>Terminal 2E, Boeing 777-300ER, classe Premium. 3 passagers : Laurent (siège 05D), Anne, Enea.</p>
+        <div class="ref">Dossier <b>ZBCUJ2</b> · Billet Laurent <b>057-2357545145</b></div>
+        <div class="badges"><span class="b ok">Billets émis</span></div>
+      </div>
+      <div class="carte">
+        <span class="type hotel">🏨 Hôtel</span>
+        <div class="quand">Dim 2 (check-in 16:00) → Mar 4 août (12:00) · 2 nuits</div>
+        <h3>Hôtel Château Laurier — Québec</h3>
+        <p>1220 Place George V. Chambre supérieure 2 lits Queen, 2 adultes + 1 enfant. Total 837,97 CAD, annulable jusqu'au 30 juillet. Parking fermé → voiturier 34 $/j.</p>
+        <div class="ref">Conf. Booking <b>5061605516</b> · Code <b>0043</b></div>
+        <div class="badges"><span class="b ok">Confirmé</span></div>
+      </div>
+      <div class="carte gold">
+        <span class="type vehicule">🛻 Pick-up</span>
+        <div class="quand">Mar 4 août 10:30 → Jeu 13 août 10:30 · 9 jours</div>
+        <h3>Budget — Dodge Ram 1500 (ou similaire)</h3>
+        <p>Retrait : Québec City, Sillery (ouvert 7:00–17:00, tél. 418-527-2252). Retour : Montréal, Metcalfe St (7:00–19:00, tél. 514-866-2847). 1 217,87 € estimés, km illimité, CDW franchise 500 CAD. Permis + carte au nom du conducteur principal.</p>
+        <div class="ref">Conf. <b>4661-3264-FR-5</b> · budget.fr</div>
+        <div class="badges"><span class="b ok">Réservé</span><span class="b">Paiement au comptoir</span></div>
+      </div>
+      <div class="carte">
+        <span class="type chalet">🏡 Airbnb</span>
+        <div class="quand">Mar 4 → Ven 7 août · 3 nuits</div>
+        <h3>Saint-Aimé-des-Lacs — Charlevoix</h3>
+        <p>Aux portes du parc des Hautes-Gorges-de-la-Rivière-Malbaie. ~1h45 de route depuis Québec avec le Ram.</p>
+        <div class="ref">Reçu <b>Airbnb</b> · voyage du 4–7 août</div>
+        <div class="badges"><span class="b ok">Payé</span></div>
+      </div>
+      <div class="carte">
+        <span class="type chalet">🏡 Chalet</span>
+        <div class="quand">Ven 7 → Mar 11 août · 4 nuits</div>
+        <h3>Chaletô « Nature & Détente | Chalet du Sommet » — Sainte-Rose-du-Nord</h3>
+        <p>Sur le fjord du Saguenay. Total 2 779,82 CAD (dépôt inclus). Infos d'accès et horaires d'arrivée envoyés à J-7. Pas d'early check-in en haute saison.</p>
+        <div class="ref">Conf. <b>GY-58sVAWKn</b> · Gestion Chaletô (Guesty)</div>
+        <div class="badges"><span class="b ok">Confirmé</span><span class="b warn">Contrat à signer + vérif. identité</span></div>
+      </div>
+      <div class="carte">
+        <span class="type chalet">🏡 Airbnb</span>
+        <div class="quand">Mar 11 → Mer 12 août · 1 nuit</div>
+        <h3>« Chalet en nature - MICRO 11 » — Shawinigan</h3>
+        <p>Étape en Mauricie sur la route de Montréal (~3h30 depuis le Saguenay), hôte Nature Nature Inc.</p>
+        <div class="ref">Reçu <b>Airbnb</b> · voyage du 11–12 août</div>
+        <div class="badges"><span class="b ok">Payé</span></div>
+      </div>
+      <div class="carte">
+        <span class="type hotel">🏨 Hôtel</span>
+        <div class="quand">Mer 12 (16:00) → Sam 15 août (départ 16:00) · 3 nuits</div>
+        <h3>Hôtel Bonaventure — Montréal</h3>
+        <p>900 de la Gauchetière O., centre-ville. Chambre supérieure 2 lits Queen, 2 adultes + 1 enfant, piscine extérieure chauffée. Total 1 588,05 CAD, late check-out 16h inclus — parfait avant le vol. Le Ram se rend à 2 min à pied (Metcalfe St) le jeudi matin. Parking 27 CAD/24h.</p>
+        <div class="ref">Conf. <b>1071167341</b> · hotelbonaventure.com</div>
+        <div class="badges"><span class="b ok">Confirmé</span><span class="b">Départ 16h inclus</span></div>
+      </div>
+      <div class="carte gold">
+        <span class="type vol">✈ Vol</span>
+        <div class="quand">Sam 15 août · YUL 22:20 → CDG dim 16, 11:10</div>
+        <h3>AF 0349 — Montréal YUL → Paris CDG</h3>
+        <p>Aéroport Pierre-Elliott-Trudeau (18 km de l'hôtel). Arrivée CDG Terminal 2E le dimanche matin.</p>
+        <div class="ref">Dossier <b>ZBCUJ2</b></div>
+        <div class="badges"><span class="b ok">Billets émis</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 ============ -->
+  <section class="chapitre">
+    <div class="chap-head">
+      <span class="chap-num">04</span>
+      <div><h2>Rentrée en musique</h2><div class="chap-dates">25 → 30 août</div></div>
+    </div>
+    <div class="grille">
+      <div class="carte">
+        <span class="type event">🎂 Perso</span>
+        <div class="quand">Mar 25 août</div>
+        <h3>Anniversaire — Bouba, 46 ans</h3>
+        <p>Deux jours après le retour du Québec. Une table à réserver dans le 11e ?</p>
+      </div>
+      <div class="carte hot">
+        <span class="type event">🎸 Festival</span>
+        <div class="quand">Ven 28 août · Ouverture du site 12:00</div>
+        <h3>Rock en Seine — Domaine de Saint-Cloud</h3>
+        <p>Billets pris pour la journée du vendredi 28. Festival du 26 au 30 août, têtes d'affiche : The Cure, Nick Cave & The Bad Seeds, Tyler the Creator. Horaires des concerts sur l'app. Sac max 24 L, site cashless.</p>
+        <div class="ref">Billets journée <b>ven. 28/08</b></div>
+        <div class="badges"><span class="b ok">Billets pris</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="alerte">
+    <h4>À vérifier avant le départ</h4>
+    <ul>
+      <li><strong>Chaletô :</strong> contrat de location à signer et vérification d'identité à finaliser (lien Guesty dans le mail de confirmation).</li>
+      <li><strong>Roadsurfer :</strong> heure et lieu de restitution à confirmer dans la PJ (compatibilité avec la nuit à Aiguebelette du 31/07).</li>
+      <li><strong>Billet TER du 25 juillet (55NRU6) :</strong> à imprimer avant le départ — non imprimable en gare.</li>
+      <li><strong>Budget :</strong> paiement au retrait le 4 août — carte + permis au nom du conducteur principal, agence Sillery ouverte dès 7h.</li>
+      <li><strong>Enchaînement serré :</strong> Aiguebelette → restitution van Lyon → Paris le samedi 1er, décollage dimanche 21h15 à CDG.</li>
+    </ul>
+  </div>
+
+  <footer>Généré le 1er juillet 2026 · Sources : Gmail (Air France, SNCF Connect, Booking, Airbnb, Chaletô/Guesty, Budget, roadsurfer, campings, hôtels, P4S) & Calendrier Apple</footer>
+
+</div>
+</body>
+</html>
